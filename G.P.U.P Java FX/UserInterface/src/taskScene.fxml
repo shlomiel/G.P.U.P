@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<ScrollPane fx:id="scrollPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="taskSceneController">
+   <content>
+      <BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0">
+         <bottom>
+            <AnchorPane fx:id="buttomAnchorPane" prefHeight="200.0" prefWidth="427.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ListView fx:id="frozenListt" layoutX="257.0" layoutY="54.0" prefHeight="203.0" prefWidth="200.0">
+                     <tooltip>
+                        <Tooltip fx:id="frozenListToolTip" text="frozenListToolTip" />
+                     </tooltip>
+                  </ListView>
+                  <Label fx:id="frozenLabel" layoutX="347.0" layoutY="32.0" text="Frozen" />
+                  <ListView fx:id="skippedList" layoutX="457.0" layoutY="54.0" prefHeight="203.0" prefWidth="200.0" />
+                  <Label fx:id="skippedLabel" layoutX="536.0" layoutY="32.0" text="Skipped" />
+                  <Label fx:id="waitingLabel" layoutX="735.0" layoutY="32.0" text="Waiting" />
+                  <ListView fx:id="waitingList" layoutX="657.0" layoutY="54.0" prefHeight="203.0" prefWidth="200.0" />
+                  <ListView fx:id="inProcessList" layoutX="857.0" layoutY="54.0" prefHeight="203.0" prefWidth="200.0" />
+                  <Label fx:id="inProcessLabel" layoutX="937.0" layoutY="32.0" text="In Process" />
+                  <Label fx:id="finishedLabel" layoutX="1129.0" layoutY="32.0" text="Finished" />
+                  <ListView fx:id="finishedList" layoutX="1057.0" layoutY="54.0" prefHeight="203.0" prefWidth="200.0" />
+                  <Button fx:id="backButton" layoutX="20.0" layoutY="177.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="44.0" prefWidth="120.0" text="Back" />
+                  <Button fx:id="resetButton" layoutX="20.0" layoutY="112.0" mnemonicParsing="false" onAction="#resetButtonPressed" prefHeight="44.0" prefWidth="120.0" text="reset" />
+               </children>
+            </AnchorPane>
+         </bottom>
+         <center>
+            <AnchorPane fx:id="centerAnchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="targetTable" layoutX="7.0" layoutY="96.0" prefHeight="474.0" prefWidth="469.0">
+                    <columns>
+                      <TableColumn fx:id="nameCol" prefWidth="213.0" text="Name" />
+                      <TableColumn fx:id="selectCol" minWidth="0.0" prefWidth="252.0" text="Select" />
+                    </columns>
+                  </TableView>
+                  <CheckBox fx:id="whatIfEnableCheckBox" layoutX="277.0" layoutY="27.0" mnemonicParsing="false" onAction="#whatIfEnableCheckBoxChecked" text="What If" />
+                  <Button fx:id="startButton" layoutX="489.0" layoutY="457.0" mnemonicParsing="false" onAction="#startButtonPressed" prefHeight="113.0" prefWidth="167.0" text="Start ">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane fx:id="simulationTaskAnchorPane" disable="true" layoutX="793.0" layoutY="222.0" prefHeight="148.0" prefWidth="497.0">
+                     <children>
+                        <Label fx:id="processingTimeLabel" layoutX="27.0" layoutY="23.0" text="processing time : " />
+                        <Label fx:id="randOrConstLabel" layoutX="27.0" layoutY="53.0" text="random or constant time: " />
+                        <Label fx:id="successProbLabel" layoutX="27.0" layoutY="83.0" text="success probability: " />
+                        <Label fx:id="warningProbLabel" layoutX="27.0" layoutY="113.0" text="warning probability:  " />
+                        <TextField fx:id="msField" layoutX="272.0" layoutY="18.0" promptText="ms (Integer)" />
+                        <TextField fx:id="successField" layoutX="272.0" layoutY="78.0" promptText="0.0 - 1.0" />
+                        <TextField fx:id="warningField" layoutX="272.0" layoutY="108.0" promptText="0.0 - 1.0" />
+                        <RadioButton fx:id="randRadioButton" layoutX="272.0" layoutY="53.0" mnemonicParsing="false" text="random" />
+                        <RadioButton fx:id="constRadioButton" layoutX="366.0" layoutY="53.0" mnemonicParsing="false" text="constant" />
+                     </children>
+                  </AnchorPane>
+                  <MenuButton fx:id="targetMenuButton" disable="true" layoutX="277.0" layoutY="56.0" mnemonicParsing="false" text="select target" />
+                  <Label fx:id="progressPercentLabel" layoutX="682.0" layoutY="514.0" prefHeight="49.0" prefWidth="111.0" text="0 %">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ProgressBar fx:id="taskProgressBar" layoutX="867.0" layoutY="516.0" prefHeight="45.0" prefWidth="408.0" progress="0.0" />
+                  <Button fx:id="pauseButton" layoutX="515.0" layoutY="372.0" mnemonicParsing="false" onAction="#pauseButtonPressed" prefHeight="70.0" prefWidth="115.0" text="Pause" />
+                  <AnchorPane fx:id="compilationTaskAnchorPane" disable="true" layoutX="777.0" layoutY="361.0" prefHeight="92.0" prefWidth="421.0">
+                     <children>
+                        <TextField fx:id="outPathTextField" layoutX="27.0" layoutY="45.0" prefHeight="31.0" prefWidth="297.0" promptText="Enter path for output files" />
+                        <TextField fx:id="sourcePathTextField" layoutX="27.0" layoutY="14.0" prefHeight="31.0" prefWidth="297.0" promptText="Enter path to source code files " />
+                     </children>
+                  </AnchorPane>
+                  <RadioButton fx:id="simulationTaskRadioButton" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#simulationTaskRadioButtonSelected" prefHeight="36.0" prefWidth="201.0" text="Simulation Task">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="compilationTaskRadioButton" layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onAction="#compilationTaskRadioButtonSelected" prefHeight="31.0" prefWidth="239.0" text="Compilation Task">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </RadioButton>
+                  <Label fx:id="numOfThreadsLabel" layoutX="812.0" layoutY="86.0" text="number of threads: " />
+                  <TextField fx:id="numOfThreadsTextField" layoutX="963.0" layoutY="81.0" prefHeight="31.0" prefWidth="86.0" promptText="Enter number of threads" />
+                  <Label layoutX="813.0" layoutY="121.0" text="running route relation:" />
+                  <RadioButton fx:id="requiredForRadioButton" layoutX="423.0" layoutY="61.0" mnemonicParsing="false" text="required for" />
+                  <RadioButton fx:id="dependsOnRadioButon" layoutX="423.0" layoutY="27.0" mnemonicParsing="false" text="depends on" />
+                  <RadioButton fx:id="scratchRadioButton" layoutX="812.0" layoutY="46.0" mnemonicParsing="false" text="from scrtach" />
+                  <RadioButton fx:id="incRadioButton" layoutX="943.0" layoutY="46.0" mnemonicParsing="false" text="incremental" />
+                  <TextArea fx:id="midrunTextArea" layoutX="489.0" layoutY="133.0" prefHeight="234.0" prefWidth="290.0" visible="false" />
+                  <TextArea fx:id="midrunTextArea" layoutX="476.0" layoutY="122.0" prefHeight="243.0" prefWidth="325.0" visible="false" />
+                  <Label fx:id="errorLabel" layoutX="712.0" layoutY="472.0" prefHeight="21.0" prefWidth="559.0" textFill="RED" />
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </content>
+</ScrollPane>

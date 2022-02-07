@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainSceneController">
+   <content>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0">
+         <center>
+            <TableView fx:id="targetTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="nameCol" prefWidth="89.0" text=" name" />
+                <TableColumn fx:id="locationCol" prefWidth="91.0" text="location" />
+                  <TableColumn fx:id="directDepOnCol" prefWidth="114.0" text="direct dep on" />
+                  <TableColumn fx:id="allDepOnCol" prefWidth="121.0" text="all dep pn" />
+                  <TableColumn fx:id="directReqForCol" prefWidth="151.0" text="direct req for" />
+                  <TableColumn fx:id="allReqForCol" prefWidth="192.0" text="all req for" />
+                  <TableColumn fx:id="freeInfoCol" text="free info" />
+                  <TableColumn fx:id="serialSetsCol" prefWidth="219.0" text="serial sets" />
+              </columns>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </TableView>
+         </center>
+         <bottom>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="anchorForFindRoute" disable="true" prefHeight="100.0" prefWidth="266.0">
+                     <children>
+                        <MenuButton fx:id="fromMenuButon" layoutX="19.0" layoutY="-1.0" mnemonicParsing="false" onAction="#fromMenuOptionSelected" text="From" />
+                        <MenuButton fx:id="toMenuButon" layoutX="19.0" layoutY="41.0" mnemonicParsing="false" onAction="#toMenuOptionSelected" text="To" />
+                        <Label fx:id="srcTargetLabel" layoutX="101.0" layoutY="-1.0" prefHeight="21.0" prefWidth="20.0" />
+                        <Label fx:id="destTargetLabel" layoutX="89.0" layoutY="43.0" prefHeight="21.0" prefWidth="20.0" />
+                        <Button fx:id="findRouteExecButton" layoutX="128.0" layoutY="56.0" mnemonicParsing="false" onAction="#findRouteExecButtonPressed" prefHeight="31.0" prefWidth="117.0" text="Start" />
+                        <RadioButton fx:id="depOnRadioButton" layoutX="128.0" layoutY="4.0" mnemonicParsing="false" onAction="#radioButtonSelected" prefHeight="20.0" prefWidth="109.0" text="Depends on" />
+                        <RadioButton fx:id="reqForRadioButton" layoutX="128.0" layoutY="33.0" mnemonicParsing="false" onAction="#radioButtonSelected" prefHeight="21.0" prefWidth="120.0" text="Required for" />
+                     </children>
+                  </AnchorPane>
+                  <ListView fx:id="findRouteList" disable="true" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="findCycleAnchorPane" disable="true" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <MenuButton fx:id="targetMenuButton" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="Target" />
+                        <Label fx:id="targetSelectedLabel" layoutX="117.0" layoutY="11.0" />
+                        <Button fx:id="findCycleExecButton" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#findCycleExecButtonPressed" prefHeight="31.0" prefWidth="117.0" text="Start" />
+                     </children>
+                  </AnchorPane>
+                  <ListView fx:id="findCycleList" disable="true" editable="true" layoutX="276.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="whatIfAnchorPane" disable="true" prefHeight="100.0" prefWidth="161.0">
+                     <children>
+                        <MenuButton fx:id="whatIfMenuButton" layoutX="10.0" layoutY="76.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="89.0" text="Target" />
+                        <RadioButton fx:id="whatIfdepOnRadioButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="109.0" text="Depends on" />
+                        <RadioButton fx:id="whatIfreqForRadioButton" layoutX="10.0" layoutY="40.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="120.0" text="Required for" />
+                        <Label fx:id="targetSelectedLabelWhatIf" layoutX="102.0" layoutY="70.0" />
+                     </children>
+                  </AnchorPane>
+                  <ListView fx:id="whatIfListView" disable="true" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+         </bottom>
+         <right>
+            <AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="239.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="targetsInSystemTextLabel" layoutX="53.0" layoutY="14.0" prefHeight="25.0" prefWidth="172.0" text="Targets in system: ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numberOfTargetsLabel" layoutX="98.0" layoutY="48.0" prefHeight="55.0" prefWidth="127.0" text="10" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="indiTextLabel" layoutX="14.0" layoutY="120.0" prefWidth="100.0" text="Independent:" />
+                  <Label fx:id="leafTextLabel" layoutX="14.0" layoutY="145.0" text="Leaf:" />
+                  <Label fx:id="rootTextLabel" layoutX="14.0" layoutY="170.0" text="Root:" />
+                  <Label fx:id="midTextLabel" layoutX="14.0" layoutY="195.0" text="Middle:" />
+                  <Label layoutX="156.0" layoutY="120.0" />
+                  <Label fx:id="leafNumLabel" layoutX="156.0" layoutY="145.0" text="-">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="rootNumLabel" layoutX="156.0" layoutY="170.0" text="-">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="midNumLabel" layoutX="156.0" layoutY="195.0" text="-">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="indiNumLabel" layoutX="156.0" layoutY="120.0" text="-">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="seialSetsInSystemTextLabel" layoutX="53.0" layoutY="255.0" prefHeight="25.0" prefWidth="172.0" text="Serial sets in system:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numberOfSetsLabel" layoutX="98.0" layoutY="285.0" prefHeight="55.0" prefWidth="127.0" text="10" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </right>
+         <top>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="100.0" prefWidth="1338.0">
+                     <children>
+                        <Button fx:id="findRouteButton" layoutX="30.0" layoutY="15.0" mnemonicParsing="false" onAction="#findRouteButtonPresed" prefHeight="31.0" prefWidth="275.0" text="Find route " />
+                        <Button fx:id="findCycleButton" layoutX="30.0" layoutY="50.0" mnemonicParsing="false" onAction="#findCycleButtonPressed" prefHeight="31.0" prefWidth="275.0" text="Find cycle" />
+                        <Button fx:id="whatIfButton" layoutX="330.0" layoutY="15.0" mnemonicParsing="false" onAction="#whatIfButtonPressed" prefHeight="31.0" prefWidth="275.0" text="What if" />
+                        <Button fx:id="runTaskButton" layoutX="330.0" layoutY="50.0" mnemonicParsing="false" onAction="#runTaskButtonPressed" prefHeight="31.0" prefWidth="275.0" text="Run Task" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+   </content>
+</ScrollPane>
